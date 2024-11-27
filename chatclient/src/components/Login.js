@@ -6,12 +6,10 @@ import './Login.css'; // Import the CSS file here
 const Login = ({ setCurrentUser }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState(""); // You can remove this as we will use alert instead
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        setError(""); // Clear any previous error
         try {
             const res = await axios.post("http://localhost:5000/api/auth/login", { username, password });
             setCurrentUser(res.data.username);
