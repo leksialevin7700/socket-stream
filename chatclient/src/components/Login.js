@@ -12,8 +12,13 @@ const Login = ({ setCurrentUser }) => {
         e.preventDefault();
         try {
             const res = await axios.post("http://localhost:5000/api/auth/login", { username, password });
-            setCurrentUser(res.data.username);
-            localStorage.setItem("token", res.data.token);
+            
+            // Set the username and token in localStorage after successful login
+            localStorage.setItem("username", res.data.username);  // Save the username in localStorage
+            localStorage.setItem("token", res.data.token);        // Save the token for future requests
+    
+            setCurrentUser(res.data.username); // Optionally update state with the current username
+    
             alert("Login successful!"); // Display alert on successful login
             navigate("/users"); // Redirect to users page after successful login
         } catch (err) {
@@ -21,6 +26,7 @@ const Login = ({ setCurrentUser }) => {
             alert(errorMessage); // Display error message in alert
         }
     };
+    
 
     return (
         <div className="login-container">

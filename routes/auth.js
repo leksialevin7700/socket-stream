@@ -4,7 +4,8 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const router = express.Router();
 
-const SECRET = "asbcdefghijkl1456"; // Fetch from environment variable or use fallback
+const SECRET = process.env.JWT_SECRET || "default_secret";
+; // Fetch from environment variable or use fallback
 
 // Register Route
 router.post("/register", async (req, res) => {
